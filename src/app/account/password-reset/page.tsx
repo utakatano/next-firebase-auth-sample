@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useAuth } from '@/lib/auth/context';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "@/lib/auth/context";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 const passwordResetSchema = z.object({
-  email: z.string().email('有効なメールアドレスを入力してください'),
+  email: z.string().email("有効なメールアドレスを入力してください"),
 });
 
 type PasswordResetFormValues = z.infer<typeof passwordResetSchema>;
@@ -37,11 +37,11 @@ export default function PasswordReset() {
       await sendPasswordResetEmail(data.email);
       setSuccess(true);
     } catch (error) {
-      console.error('Password reset error:', error);
+      console.error("Password reset error:", error);
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('パスワードリセットメールの送信中にエラーが発生しました');
+        setError("パスワードリセットメールの送信中にエラーが発生しました");
       }
     } finally {
       setLoading(false);
@@ -50,8 +50,10 @@ export default function PasswordReset() {
 
   return (
     <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-6 text-center">パスワードリセット</h1>
-      
+      <h1 className="text-2xl font-bold mb-6 text-center">
+        パスワードリセット
+      </h1>
+
       {error && (
         <div className="bg-red-50 text-red-600 p-4 rounded-md mb-6">
           {error}
@@ -71,21 +73,20 @@ export default function PasswordReset() {
           fullWidth
           placeholder="example@example.com"
           error={errors.email?.message}
-          {...register('email')}
+          {...register("email")}
         />
-        
-        <Button
-          type="submit"
-          fullWidth
-          disabled={loading}
-        >
-          {loading ? '送信中...' : 'パスワードリセットメールを送信'}
+
+        <Button type="submit" fullWidth disabled={loading}>
+          {loading ? "送信中..." : "パスワードリセットメールを送信"}
         </Button>
       </form>
-      
+
       <div className="mt-6 text-center">
         <p className="text-gray-600">
-          <Link href="/account/sign-in" className="text-blue-600 hover:underline">
+          <Link
+            href="/account/sign-in"
+            className="text-blue-600 hover:underline"
+          >
             ログインページに戻る
           </Link>
         </p>

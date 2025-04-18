@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { useAuth } from '@/lib/auth/context';
-import { Button } from './ui/Button';
+import React from "react";
+import Link from "next/link";
+import { useAuth } from "@/lib/auth/context";
+import { Button } from "./ui/Button";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
@@ -20,7 +20,10 @@ export const Header = () => {
           <nav className="space-x-4">
             {user ? (
               <div className="flex items-center space-x-4">
-                <Link href="/account/profile" className="text-gray-700 hover:text-blue-600">
+                <Link
+                  href="/account/profile"
+                  className="text-gray-700 hover:text-blue-600"
+                >
                   プロフィール
                 </Link>
                 <Button onClick={() => signOut()} variant="secondary">
@@ -29,7 +32,10 @@ export const Header = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link href="/account/sign-in" className="text-gray-700 hover:text-blue-600">
+                <Link
+                  href="/account/sign-in"
+                  className="text-gray-700 hover:text-blue-600"
+                >
                   ログイン
                 </Link>
                 <Link href="/account/sign-up">

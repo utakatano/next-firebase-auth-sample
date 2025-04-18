@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useAuth } from "@/lib/auth/context";
 import Link from "next/link";
@@ -9,7 +9,9 @@ export default function Home() {
 
   return (
     <div className="max-w-3xl mx-auto text-center py-12">
-      <h1 className="text-4xl font-bold mb-6">Next.js + Firebase Authentication サンプル</h1>
+      <h1 className="text-4xl font-bold mb-6">
+        Next.js + Firebase Authentication サンプル
+      </h1>
       <p className="text-xl mb-8 text-gray-600">
         Next.jsのApp Routerを使用したFirebase認証の実装例です。
       </p>

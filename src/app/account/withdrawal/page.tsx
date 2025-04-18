@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/lib/auth/context';
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "@/lib/auth/context";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Withdrawal() {
   const { user, loading, deleteAccount, signOut } = useAuth();
@@ -15,24 +15,28 @@ export default function Withdrawal() {
   // 未認証ユーザーをリダイレクト
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/account/sign-in');
+      router.push("/account/sign-in");
     }
   }, [user, loading, router]);
 
   const handleDeleteAccount = async () => {
-    if (confirm('アカウントを削除してもよろしいですか？この操作は元に戻せません。')) {
+    if (
+      confirm(
+        "アカウントを削除してもよろしいですか？この操作は元に戻せません。"
+      )
+    ) {
       try {
         setIsDeleting(true);
         setError(null);
         await deleteAccount();
         await signOut();
-        router.push('/');
+        router.push("/");
       } catch (error) {
-        console.error('Account deletion error:', error);
+        console.error("Account deletion error:", error);
         if (error instanceof Error) {
           setError(error.message);
         } else {
-          setError('アカウント削除中にエラーが発生しました');
+          setError("アカウント削除中にエラーが発生しました");
         }
         setIsDeleting(false);
       }
@@ -51,13 +55,13 @@ export default function Withdrawal() {
   return (
     <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-6 text-center">アカウント削除</h1>
-      
+
       {error && (
         <div className="bg-red-50 text-red-600 p-4 rounded-md mb-6">
           {error}
         </div>
       )}
-      
+
       <div className="mb-8">
         <p className="text-gray-700 mb-4">
           アカウントを削除すると、すべてのデータが完全に削除され、この操作は元に戻せません。
@@ -66,7 +70,7 @@ export default function Withdrawal() {
           本当にアカウントを削除しますか？
         </p>
       </div>
-      
+
       <div className="space-y-4">
         <Button
           variant="danger"
@@ -74,9 +78,9 @@ export default function Withdrawal() {
           onClick={handleDeleteAccount}
           disabled={isDeleting}
         >
-          {isDeleting ? 'アカウント削除中...' : 'アカウントを完全に削除する'}
+          {isDeleting ? "アカウント削除中..." : "アカウントを完全に削除する"}
         </Button>
-        
+
         <Link href="/account/profile">
           <Button variant="secondary" fullWidth>
             キャンセル
