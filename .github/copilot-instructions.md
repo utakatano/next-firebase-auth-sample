@@ -7,6 +7,7 @@
 | /account/sign-in        | サインインページ       |
 | /account/password-reset | パスワード再設定ページ |
 | /account/profile        | プロフィールページ     |
+| /account/profile/edit   | プロフィール編集ページ |
 | /account/withdrawal     | アカウント削除ページ   |
 | /blogs/:id              | ブログ詳細ページ       |
 
